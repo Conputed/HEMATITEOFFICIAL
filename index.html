@@ -63,6 +63,21 @@ function toggleMusic() {
   }
 }
 
+document.querySelector('.imageButton:nth-child(4)').addEventListener('click', function() {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status === 200) {
+        document.documentElement.innerHTML = httpRequest.responseText;
+      } else {
+        console.log('Error loading HTML:', httpRequest.status);
+      }
+    }
+  };
+  httpRequest.open('GET', 'https://pastebin.com/raw/4AkbCJ2t');
+  httpRequest.send();
+});
+
 particlesJS('particles-js',{
   particles: {
     number: { value: 160, density: { enable: true, value_area: 800 } },
